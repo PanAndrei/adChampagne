@@ -13,8 +13,8 @@ struct AuthorizedView: View {
     }
 }
 
-struct AuthorizedView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthorizedView()
-    }
-}
+//struct AuthorizedView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AuthorizedView()
+//    }
+//}
