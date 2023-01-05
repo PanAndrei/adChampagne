@@ -8,13 +8,27 @@
 import SwiftUI
 
 struct AuthorizedView: View {
+    @EnvironmentObject var authentication: Authentication
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text("Hello, test!")
+            }
+            .navigationTitle("name test".localized)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("log out".localized) {
+                        authentication.updateValidation(success: false)
+                    }
+                }
+            }
+        }
     }
 }
 
-//struct AuthorizedView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AuthorizedView()
-//    }
-//}
+struct AuthorizedView_Previews: PreviewProvider {
+    static var previews: some View {
+        AuthorizedView()
+    }
+}

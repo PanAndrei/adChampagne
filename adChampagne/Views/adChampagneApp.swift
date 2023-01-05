@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct adChampagneApp: App {
+    @StateObject var authentication = Authentication()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authentication.isValidated {
+                AuthorizedView() //
+                    .environmentObject(authentication)
+            } else {
+                LogingView()
+                    .environmentObject(authentication)
+            }
         }
     }
 }

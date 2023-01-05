@@ -10,16 +10,12 @@ import Foundation
 class APICallSimulator {
     static let shared = APICallSimulator()
     
-    enum APIError: Error {
-        case error
-    }
-    
-    func login(credentials: Credentials, completinon: @escaping (Result<Bool, APIError>) -> Void) {
+    func login(credentials: Credentials, completinon: @escaping (Result<Bool, Authentication.AuthenticationError>) -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             if credentials.password == "password" {
                 completinon(.success(true))
             } else {
-                completinon(.failure(APIError.error))
+                completinon(.failure(.invalidCredentials))
             }
         }
     }

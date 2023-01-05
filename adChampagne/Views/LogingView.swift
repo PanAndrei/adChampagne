@@ -8,9 +8,42 @@
 import SwiftUI
 
 struct LogingView: View {
+    @EnvironmentObject var authentication: Authentication
+    @StateObject private var loginVM = LoginViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        
+        VStack {
+            Text("tes54t".localized)
+                .onTapGesture {
+                    UIApplication.shared.endEditing() // for test
+                }
+            
+            TextField("Email Adress".localized, text: $loginVM.credentials.email) // only email
+                .keyboardType(.emailAddress)
+            
+            SecureField("Password".localized, text: $loginVM.credentials.password) // delete all // only letters and nums
+                .keyboardType(.emailAddress)
+            
+            if loginVM.showProgressView {
+                ProgressView()
+            }
+            
+            Button("Log in".localized) {
+                loginVM.login { success in
+                    authentication.updateValidation(success: success)
+                }
+            }
+            .disabled(loginVM.loginDisabled)
+            .padding(24)
+        }
+        .autocapitalization(.none)
+        .autocorrectionDisabled()
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+        .padding()
+        .disabled(loginVM.showProgressView)
+        .alert(item: $loginVM.error) { error in
+            Alert(title: Text("invalid login".localized), message: Text(error.localizedDescription)) // to fix
+        }
     }
 }
 
