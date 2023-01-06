@@ -19,6 +19,7 @@
 		B69E23AA29672D7B002EE52F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E23A929672D7B002EE52F /* LoginViewModel.swift */; };
 		B69E23AC29673090002EE52F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E23AB29673090002EE52F /* String+Extension.swift */; };
 		B69E23AE2967362A002EE52F /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E23AD2967362A002EE52F /* Authentication.swift */; };
+		B69E23B7296769E5002EE52F /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E23B6296769E5002EE52F /* KeyChainManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		B69E23A929672D7B002EE52F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		B69E23AB29673090002EE52F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		B69E23AD2967362A002EE52F /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		B69E23B6296769E5002EE52F /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,8 +69,8 @@
 		B69E238B2966D2BC002EE52F /* adChampagne */ = {
 			isa = PBXGroup;
 			children = (
-				B69E23A829672D63002EE52F /* ViewModels */,
 				B69E23A529672B97002EE52F /* Extensions */,
+				B69E23A829672D63002EE52F /* ViewModels */,
 				B69E23A229672A13002EE52F /* Services */,
 				B69E239F2966DCF6002EE52F /* Models */,
 				B69E239A2966D2F2002EE52F /* Views */,
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				B69E23A329672A4A002EE52F /* APICallSimulator.swift */,
+				B69E23B6296769E5002EE52F /* KeyChainManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -147,6 +150,8 @@
 			dependencies = (
 			);
 			name = adChampagne;
+			packageProductDependencies = (
+			);
 			productName = adChampagne;
 			productReference = B69E23892966D2BC002EE52F /* adChampagne.app */;
 			productType = "com.apple.product-type.application";
@@ -175,6 +180,8 @@
 				Base,
 			);
 			mainGroup = B69E23802966D2BC002EE52F;
+			packageReferences = (
+			);
 			productRefGroup = B69E238A2966D2BC002EE52F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -204,6 +211,7 @@
 				B69E23A12966DD5D002EE52F /* CredentialsModel.swift in Sources */,
 				B69E23AC29673090002EE52F /* String+Extension.swift in Sources */,
 				B69E23A429672A4A002EE52F /* APICallSimulator.swift in Sources */,
+				B69E23B7296769E5002EE52F /* KeyChainManager.swift in Sources */,
 				B69E23AE2967362A002EE52F /* Authentication.swift in Sources */,
 				B69E238F2966D2BC002EE52F /* ContentView.swift in Sources */,
 				B69E239E2966DCC5002EE52F /* AuthorizedView.swift in Sources */,
