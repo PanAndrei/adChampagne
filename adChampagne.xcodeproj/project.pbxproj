@@ -23,6 +23,7 @@
 		B69E2403296B64FE002EE52F /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2402296B64FE002EE52F /* RegisterViewModel.swift */; };
 		B69E2405296B6518002EE52F /* RestorePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2404296B6517002EE52F /* RestorePasswordViewModel.swift */; };
 		B69E2408296B729E002EE52F /* AnimatedGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2407296B729D002EE52F /* AnimatedGreetingView.swift */; };
+		B69E240A296B7847002EE52F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2409296B7847002EE52F /* RegisterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		B69E2402296B64FE002EE52F /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B69E2404296B6517002EE52F /* RestorePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordViewModel.swift; sourceTree = "<group>"; };
 		B69E2407296B729D002EE52F /* AnimatedGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGreetingView.swift; sourceTree = "<group>"; };
+		B69E2409296B7847002EE52F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				B69E239B2966D415002EE52F /* LogingView.swift */,
 				B69E239D2966DCC5002EE52F /* AuthorizedView.swift */,
 				B69E2406296B727E002EE52F /* ReusableComponents */,
+				B69E2409296B7847002EE52F /* RegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				B69E23A429672A4A002EE52F /* APICallSimulator.swift in Sources */,
 				B69E23B7296769E5002EE52F /* KeyChainManager.swift in Sources */,
 				B69E2405296B6518002EE52F /* RestorePasswordViewModel.swift in Sources */,
+				B69E240A296B7847002EE52F /* RegisterView.swift in Sources */,
 				B69E23AE2967362A002EE52F /* Authentication.swift in Sources */,
 				B69E238F2966D2BC002EE52F /* ContentView.swift in Sources */,
 				B69E239E2966DCC5002EE52F /* AuthorizedView.swift in Sources */,
