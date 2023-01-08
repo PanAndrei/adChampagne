@@ -15,110 +15,179 @@ struct LogingView: View {
     @State private var isShowingRegisterForm = false
     @State private var isShowingRstorePassForm = false
     
+    @State private var isEditingEmail = false
+    @State private var isEditingPasswird = false
+    
     var body: some View {
         VStack {
-            Text("tes54t".localized)
-                .onTapGesture {
-                    UIApplication.shared.endEditing() // for test
-                }
+            AnimatedGreetingView(text: "Login", startTime: 0.1)
+                .padding(.bottom, 50)
             
-            TextField("Email Adress".localized, text: $loginVM.credentials.email) // only email
-                .keyboardType(.emailAddress)
+            VStack(alignment: .leading) {
+                Text("Email Adress")
+                    .scaleEffect((self.loginVM.credentials.email == "" && self.isEditingEmail == false) ? 1 : 0.75)
+                    .offset(y: (self.loginVM.credentials.email == "" && self.isEditingEmail == false ) ? 35 : 0)
+                    .animation(.spring())
+                
+                TextField("", text: $loginVM.credentials.email)
+                    .keyboardType(.emailAddress)
+                
+                Divider()
+            }
+            .onTapGesture {
+                self.isEditingEmail.toggle()
+                                if (self.isEditingEmail == false) {
+                                    UIApplication.shared.endEditing()
+                                }
+            }
             
-            SecureField("Password".localized, text: $loginVM.credentials.password) // delete all // only letters and nums
-                .keyboardType(.emailAddress)
+            VStack(alignment: .leading) {
+                Text("Password")
+                    .scaleEffect((self.loginVM.credentials.password == "" && self.isEditingPasswird == false) ? 1 : 0.75)
+                    .offset(y: (self.loginVM.credentials.password == "" && self.isEditingPasswird == false ) ? 35 : 0)
+                    .animation(.spring())
+                
+                SecureField("", text: $loginVM.credentials.password)
+                    .keyboardType(.emailAddress)
+                
+                Divider()
+            }
+            .onTapGesture {
+                self.isEditingPasswird.toggle()
+                                if (self.isEditingPasswird == false) {
+                                    UIApplication.shared.endEditing()
+                                }
+            }
             
             if loginVM.showProgressView {
                 ProgressView()
             }
             
-            Button("Log in".localized) {
-//                loginVM.testLogin()
+            Button("Login") {
                 loginVM.login { success in
                     authentication.updateValidation(success: success)
                 }
             }
+            .font(.system(size: 18, weight: .bold))
             .disabled(loginVM.loginDisabled)
             .padding(24)
             
-            Button("register".localized) {
+            Button("Don't have an account? Sign up.") {
                 isShowingRegisterForm.toggle()
             }
             .sheet(isPresented: $isShowingRegisterForm) {
                 RegisterView()
             }
+            .padding(.top, 36)
+            .foregroundColor(.pink)
             
-            Button("restore password".localized) {
+            Button("Forgot your password?") {
                 isShowingRstorePassForm.toggle()
             }
             .sheet(isPresented: $isShowingRstorePassForm) {
                 RestorePasswordView()
             }
+            .padding(.top, 18)
+            .foregroundColor(.purple)
+            .opacity(0.6)
+            
         }
         .autocapitalization(.none)
         .autocorrectionDisabled()
-        .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding()
         .disabled(loginVM.showProgressView)
         .alert(item: $loginVM.error) { error in
-            Alert(title: Text("invalid login".localized), message: Text(error.localizedDescription)) // to fix
+            Alert(title: Text(""), message: Text(error.localizedDescription), dismissButton: .default(Text("Try again")))
         }
     }
 }
-
-struct LogingView_Previews: PreviewProvider {
-    static var previews: some View {
-        LogingView()
-    }
-}
-
 
 struct RegisterView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var authentication: Authentication
     
-//    @StateObject var loginVM: LoginViewModel
     @StateObject var registerVM: RegisterViewModel = RegisterViewModel()
     
+    @State private var isEditingEmail = false
+    @State private var isEditingPasswird = false
+    
     var body: some View {
-        VStack {
-            Button {
-                self.presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Dismiss")
-            }
-
-            
-            TextField("Email Adress".localized, text: $registerVM.credentials.email) // only email
-                .keyboardType(.emailAddress)
-            
-            SecureField("Password".localized, text: $registerVM.credentials.password) // delete all // only letters and nums
-                .keyboardType(.emailAddress)
-            
-            if registerVM.showProgressView {
-                ProgressView()
-            }
-            
-            Button {
-//                registerVM.saveUser()
-                registerVM.register { success in
-                    authentication.updateValidation(success: success)
+        ZStack {
+            VStack {
+                HStack {
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Cancell")
+                    }
+                    
+                    Spacer()
                 }
-            } label: {
-                 Text("save data")
+                .padding(8)
+                
+                Spacer()
             }
-            .disabled(registerVM.saveDisabled)
             
-            
-            
+            VStack {
+                AnimatedGreetingView(text: "Sign Up", startTime: 0.3)
+                
+                VStack(alignment: .leading) {
+                    Text("Email Adress")
+                        .scaleEffect((self.registerVM.credentials.email == "" && self.isEditingEmail == false) ? 1 : 0.75)
+                        .offset(y: (self.registerVM.credentials.email == "" && self.isEditingEmail == false ) ? 35 : 0)
+                        .animation(.spring())
+                    
+                    TextField("", text: $registerVM.credentials.email)
+                        .keyboardType(.emailAddress)
+                    
+                    Divider()
+                }
+                .onTapGesture {
+                    self.isEditingEmail.toggle()
+                                    if (self.isEditingEmail == false) {
+                                        UIApplication.shared.endEditing()
+                                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("Password")
+                        .scaleEffect((self.registerVM.credentials.password == "" && self.isEditingPasswird == false) ? 1 : 0.75)
+                        .offset(y: (self.registerVM.credentials.password == "" && self.isEditingPasswird == false ) ? 35 : 0)
+                        .animation(.spring())
+                    
+                    SecureField("", text: $registerVM.credentials.password)
+                        .keyboardType(.emailAddress)
+                    
+                    Divider()
+                }
+                .onTapGesture {
+                    self.isEditingPasswird.toggle()
+                                    if (self.isEditingPasswird == false) {
+                                        UIApplication.shared.endEditing()
+                                    }
+                }
+                
+                if registerVM.showProgressView {
+                    ProgressView()
+                }
+                
+                Button {
+                    registerVM.register { success in
+                        authentication.updateValidation(success: success)
+                    }
+                } label: {
+                     Text("sign up")
+                }
+                .disabled(registerVM.saveDisabled)
+                .padding(.top, 16)
+            }
         }
         .autocapitalization(.none)
         .autocorrectionDisabled()
-        .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding()
         .disabled(registerVM.showProgressView)
         .alert(item: $registerVM.error) { error in
-            Alert(title: Text("invalid login".localized), message: Text(error.localizedDescription)) // to fix
+            Alert(title: Text(""), message: Text(error.localizedDescription), dismissButton: .default(Text("Try again")))
         }
     }
 }
@@ -127,49 +196,93 @@ struct RestorePasswordView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var restorePassVM: RestorePasswordViewModel = RestorePasswordViewModel()
     
+    @State private var isEditingEmail = false
+    @State private var isEditingPasswird = false
+    
     var body: some View {
-        VStack {
-            Text("restore password".localized)
-            
-            Button {
-                self.presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Dismiss")
+        ZStack {
+            VStack {
+                HStack {
+                    Button {
+                        self.presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Text("Cancell")
+                    }
+                    
+                    Spacer()
+                }
+                .padding(8)
+                
+                Spacer()
             }
             
-            TextField("Email Adress".localized, text: $restorePassVM.credentials.email) // only email
-                .keyboardType(.emailAddress)
-            
-            SecureField("Password".localized, text: $restorePassVM.credentials.password) // delete all // only letters and nums
-                .keyboardType(.emailAddress)
-            
-            if restorePassVM.showProgressView {
-                ProgressView()
+            VStack {
+                AnimatedGreetingView(text: "Recover Password", startTime: 0.3)
+                
+                VStack(alignment: .leading) {
+                    Text("Email Adress")
+                        .scaleEffect((self.restorePassVM.credentials.email == "" && self.isEditingEmail == false) ? 1 : 0.75)
+                        .offset(y: (self.restorePassVM.credentials.email == "" && self.isEditingEmail == false ) ? 35 : 0)
+                        .animation(.spring())
+                    
+                    TextField("", text: $restorePassVM.credentials.email)
+                        .keyboardType(.emailAddress)
+                    
+                    Divider()
+                }
+                .onTapGesture {
+                    self.isEditingEmail.toggle()
+                                    if (self.isEditingEmail == false) {
+                                        UIApplication.shared.endEditing()
+                                    }
+                }
+                
+                VStack(alignment: .leading) {
+                    Text("Password")
+                        .scaleEffect((self.restorePassVM.credentials.password == "" && self.isEditingPasswird == false) ? 1 : 0.75)
+                        .offset(y: (self.restorePassVM.credentials.password == "" && self.isEditingPasswird == false ) ? 35 : 0)
+                        .animation(.spring())
+                    
+                    SecureField("", text: $restorePassVM.credentials.password)
+                        .keyboardType(.emailAddress)
+                    
+                    Divider()
+                }
+                .onTapGesture {
+                    self.isEditingPasswird.toggle()
+                                    if (self.isEditingPasswird == false) {
+                                        UIApplication.shared.endEditing()
+                                    }
+                }
+                
+                if restorePassVM.showProgressView {
+                    ProgressView()
+                }
+                
+                Button {
+                    restorePassVM.restorePassword()
+                } label: {
+                     Text("Reset Password")
+                }
+                .disabled(restorePassVM.restoreDisabled)
+                .padding(.top, 16)
+                
+                if restorePassVM.passwordWasChanged {
+                    Text("The password has been successfully changed")
+                }
+                
             }
-            
-            Button {
-//                registerVM.saveUser()
-                restorePassVM.restorePassword()
-            } label: {
-                 Text("restore pass data")
-            }
-            .disabled(restorePassVM.restoreDisabled)
-            
-            if restorePassVM.passwordWasChanged {
-                Text("password was changed")
-            }
-            
         }
+
         .autocapitalization(.none)
         .autocorrectionDisabled()
-        .textFieldStyle(RoundedBorderTextFieldStyle())
         .padding()
         .disabled(restorePassVM.showProgressView)
         .alert(item: $restorePassVM.error) { error in
-            Alert(title: Text("invalid login".localized), message: Text(error.localizedDescription)) // to fix
+            Alert(title: Text(""), message: Text(error.localizedDescription), dismissButton: .default(Text("Try again")))
         }
         .onChange(of: restorePassVM.passwordWasChanged) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.presentationMode.wrappedValue.dismiss()
             }
         }

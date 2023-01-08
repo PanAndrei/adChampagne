@@ -1,31 +1,31 @@
 //
-//  LoginViewModel.swift
+//  RegisterViewModel.swift
 //  adChampagne
 //
-//  Created by Andrei Panasenko on 05.01.2023.
+//  Created by Andrei Panasenko on 08.01.2023.
 //
 
 import Foundation
 
-class LoginViewModel: ObservableObject {
+class RegisterViewModel: ObservableObject {
     @Published var credentials: Credentials = Credentials()
     @Published var showProgressView: Bool = false
     @Published var error: Authentication.AuthenticationError?
     
-    var loginDisabled: Bool {
+    var saveDisabled: Bool {
         credentials.email.isEmpty || credentials.password.isEmpty
     }
     
-    func login(completion: @escaping (Bool) -> Void) {
+    func register(completion: @escaping (Bool) -> Void) {
         showProgressView = true
-        APICallSimulator.shared.login(credentials: credentials) { [unowned self](result: Result<Bool, Authentication.AuthenticationError>) in
+        APICallSimulator.shared.registerUser(credentials: credentials) { [unowned self](result: Result<Bool, Authentication.AuthenticationError>) in
             showProgressView = false
             switch result {
             case .success:
                 completion(true)
-            case .failure(let authError):
+            case .failure(let regError):
                 credentials = Credentials()
-                error = authError
+                error = regError
                 completion(false)
             }
         }

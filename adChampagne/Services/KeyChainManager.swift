@@ -10,7 +10,7 @@ import Foundation
 class KeyChainManager {
     func saveUser(email: String, password: String) {
         guard !email.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Username field empty") }
-        guard !password.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Username field empty") }
+        guard !password.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Password field empty") }
         
         let attributes: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -28,7 +28,7 @@ class KeyChainManager {
     
     func updatePassword(email: String, newPassword: String) {
         guard !email.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Username field empty") }
-        guard !newPassword.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Username field empty") }
+        guard !newPassword.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Password field empty") }
         
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -38,15 +38,13 @@ class KeyChainManager {
         let attributes: [String: Any] = [kSecValueData as String: newPassword.data(using: .utf8)!]
         
         if SecItemUpdate(query as CFDictionary, attributes as CFDictionary) == noErr {
-            print("Password has changed")
+            print("Password has been changed")
         } else {
             print("Something went wrong trying to update the password")
         }
     }
     
     func checkIfPasswordIsValidated(email: String, enteredPassword: String) -> Bool {
-        //        guard !email.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return print("Username field empty") }
-        
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: email,
@@ -56,21 +54,9 @@ class KeyChainManager {
         ]
         var item: CFTypeRef?
         
-//        let query: [String: Any] = [
-//            kSecClass as String: kSecClassGenericPassword,
-//            kSecAttrAccount as String: email,
-//            kSecMatchLimit as String: kSecMatchLimitOne,
-//            kSecReturnAttributes as String: true,
-//            kSecReturnData as String: true,
-//        ]
-//
-//        var item: CFTypeRef?
-        
         if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
-            // Extract result
             print("we are here")
             if let existingItem = item as? [String: Any],
-               //               let email = existingItem[kSecAttrAccount as String] as? String,
                let passwordData = existingItem[kSecValueData as String] as? Data,
                let password = String(data: passwordData, encoding: .utf8)
             {
@@ -86,7 +72,6 @@ class KeyChainManager {
     func checkIfUserExists(email: String) -> Bool {
         guard !email.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty else { return false }
         
-        // Set query
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: email,
@@ -96,10 +81,8 @@ class KeyChainManager {
         ]
         var item: CFTypeRef?
         
-        // Check if user exists in the keychain
         if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
             
-            // Extract result
             if let existingItem = item as? [String: Any],
                let username = existingItem[kSecAttrAccount as String] as? String,
                let passwordData = existingItem[kSecValueData as String] as? Data,

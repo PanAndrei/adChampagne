@@ -31,7 +31,7 @@ class APICallSimulator {
             } else if manager.checkIfUserExists(email: credentials.email) {
                 completinon(.failure(.userAlreadyExists))
             } else {
-                manager.saveUser(email: credentials.email, password: credentials.password) // by protocol
+                manager.saveUser(email: credentials.email, password: credentials.password)
                 completinon(.success(true))
             }
         }
@@ -48,7 +48,6 @@ class APICallSimulator {
             } else {
                 manager.updatePassword(email: credentials.email, newPassword: credentials.password)
                 completinon(.success(true))
-                // check if saved
             }
         }
     }

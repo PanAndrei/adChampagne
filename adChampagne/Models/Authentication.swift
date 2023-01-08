@@ -12,10 +12,6 @@ class Authentication: ObservableObject {
     
     enum AuthenticationError: Error, LocalizedError, Identifiable {
         case invalidCredentials
-        // password contains not only num lett
-        // no such password
-        // credentials not saved
-//        case credentialsNotSaved
         case invalidEmail
         case invalidPassword
         case userAlreadyExists
@@ -29,19 +25,17 @@ class Authentication: ObservableObject {
         var errorDescription: String? {
             switch self {
             case .invalidCredentials:
-                return NSLocalizedString("password or email wrong", comment: "") // cahge
-//            case .credentialsNotSaved:
-//                return NSLocalizedString("credentials not saved", comment: "") // cahge
+                return NSLocalizedString("The email or password was entered incorrectly", comment: "")
             case .invalidEmail:
-                return NSLocalizedString("email invalid", comment: "")
+                return NSLocalizedString("Incorrect email. Please try again", comment: "")
             case .invalidPassword:
-                return NSLocalizedString("password must contains only nums and let", comment: "")
+                return NSLocalizedString("The password must consist only of English letters and numbers", comment: "")
             case .userAlreadyExists:
-                return NSLocalizedString("user already exists", comment: "")
+                return NSLocalizedString("Such a user is already registered", comment: "")
             case .userNotFound:
-                return NSLocalizedString("Cannot find user", comment: "")
+                return NSLocalizedString("No such user was found", comment: "")
             case .samePassword:
-                return NSLocalizedString("You took same password^ get another", comment: "")
+                return NSLocalizedString("You entered the same password as before. Please come up with another one", comment: "")
             }
         }
     }

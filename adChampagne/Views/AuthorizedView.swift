@@ -15,10 +15,10 @@ struct AuthorizedView: View {
             VStack {
                 Text("Hello, test!")
             }
-            .navigationTitle("name test".localized)
+            .navigationTitle("name test")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("log out".localized) {
+                    Button("log out") {
                         authentication.updateValidation(success: false)
                     }
                 }
