@@ -24,6 +24,8 @@
 		B69E2405296B6518002EE52F /* RestorePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2404296B6517002EE52F /* RestorePasswordViewModel.swift */; };
 		B69E2408296B729E002EE52F /* AnimatedGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2407296B729D002EE52F /* AnimatedGreetingView.swift */; };
 		B69E240A296B7847002EE52F /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2409296B7847002EE52F /* RegisterView.swift */; };
+		B69E240C296B7890002EE52F /* RestorePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E240B296B7890002EE52F /* RestorePasswordView.swift */; };
+		B69E2414296C8F1E002EE52F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69E2413296C8F1E002EE52F /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		B69E2404296B6517002EE52F /* RestorePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordViewModel.swift; sourceTree = "<group>"; };
 		B69E2407296B729D002EE52F /* AnimatedGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedGreetingView.swift; sourceTree = "<group>"; };
 		B69E2409296B7847002EE52F /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		B69E240B296B7890002EE52F /* RestorePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordView.swift; sourceTree = "<group>"; };
+		B69E2413296C8F1E002EE52F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +81,11 @@
 		B69E238B2966D2BC002EE52F /* adChampagne */ = {
 			isa = PBXGroup;
 			children = (
-				B69E23A529672B97002EE52F /* Extensions */,
-				B69E23A829672D63002EE52F /* ViewModels */,
-				B69E23A229672A13002EE52F /* Services */,
 				B69E239F2966DCF6002EE52F /* Models */,
 				B69E239A2966D2F2002EE52F /* Views */,
+				B69E23A829672D63002EE52F /* ViewModels */,
+				B69E23A229672A13002EE52F /* Services */,
+				B69E23A529672B97002EE52F /* Extensions */,
 				B69E23902966D2BE002EE52F /* Assets.xcassets */,
 				B69E23922966D2BE002EE52F /* Preview Content */,
 			);
@@ -102,9 +106,10 @@
 				B69E238C2966D2BC002EE52F /* adChampagneApp.swift */,
 				B69E238E2966D2BC002EE52F /* ContentView.swift */,
 				B69E239B2966D415002EE52F /* LogingView.swift */,
+				B69E2409296B7847002EE52F /* RegisterView.swift */,
+				B69E240B296B7890002EE52F /* RestorePasswordView.swift */,
 				B69E239D2966DCC5002EE52F /* AuthorizedView.swift */,
 				B69E2406296B727E002EE52F /* ReusableComponents */,
-				B69E2409296B7847002EE52F /* RegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				B69E2407296B729D002EE52F /* AnimatedGreetingView.swift */,
+				B69E2413296C8F1E002EE52F /* CustomTextField.swift */,
 			);
 			path = ReusableComponents;
 			sourceTree = "<group>";
@@ -234,7 +240,9 @@
 				B69E23A429672A4A002EE52F /* APICallSimulator.swift in Sources */,
 				B69E23B7296769E5002EE52F /* KeyChainManager.swift in Sources */,
 				B69E2405296B6518002EE52F /* RestorePasswordViewModel.swift in Sources */,
+				B69E240C296B7890002EE52F /* RestorePasswordView.swift in Sources */,
 				B69E240A296B7847002EE52F /* RegisterView.swift in Sources */,
+				B69E2414296C8F1E002EE52F /* CustomTextField.swift in Sources */,
 				B69E23AE2967362A002EE52F /* Authentication.swift in Sources */,
 				B69E238F2966D2BC002EE52F /* ContentView.swift in Sources */,
 				B69E239E2966DCC5002EE52F /* AuthorizedView.swift in Sources */,

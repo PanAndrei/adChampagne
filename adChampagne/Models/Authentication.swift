@@ -9,7 +9,8 @@ import SwiftUI
 
 class Authentication: ObservableObject {
     @Published var isValidated: Bool = false
-    
+    @Published var userEmail: String = ""
+
     enum AuthenticationError: Error, LocalizedError, Identifiable {
         case invalidCredentials
         case invalidEmail

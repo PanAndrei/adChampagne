@@ -19,7 +19,6 @@ class KeyChainManager {
         ]
         
         if SecItemAdd(attributes as CFDictionary, nil) == noErr {
-            print(attributes)
             print("User saved successfully in the keychain")
         } else {
             print("Something went wrong trying to save the user in the keychain")
@@ -55,7 +54,6 @@ class KeyChainManager {
         var item: CFTypeRef?
         
         if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
-            print("we are here")
             if let existingItem = item as? [String: Any],
                let passwordData = existingItem[kSecValueData as String] as? Data,
                let password = String(data: passwordData, encoding: .utf8)

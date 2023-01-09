@@ -13,9 +13,10 @@ struct AuthorizedView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Hello, test!")
+                Text("Hello,  \(authentication.userEmail) !")
+                    .font(.system(size: 22, weight: .bold))
             }
-            .navigationTitle("name test")
+            .navigationTitle("Main Page")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("log out") {
@@ -24,11 +25,5 @@ struct AuthorizedView: View {
                 }
             }
         }
-    }
-}
-
-struct AuthorizedView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthorizedView()
     }
 }
