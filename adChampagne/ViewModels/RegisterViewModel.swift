@@ -14,6 +14,7 @@ class RegisterViewModel: ObservableObject {
     
     var saveDisabled: Bool {
         credentials.email.isEmpty || credentials.password.isEmpty
+        // git test
     }
     
     func register(completion: @escaping (Bool) -> Void) {
